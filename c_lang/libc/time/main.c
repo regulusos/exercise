@@ -8,6 +8,7 @@ int main()
 	int seconds=time((time_t*)NULL);
 	srand((int)time(0));
 	
+	
 	printf("%d\n",seconds);
 
 	
