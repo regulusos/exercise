@@ -6,7 +6,7 @@
 #include<netinet/in.h>
 
 #define BUF_SIZE 1024
-#define SERVER_IP "127.0.0.1"
+#define SERVER_IP "10.1.81.89"
 #define SERVER_PORT 6000
 
 int main(int argc,char *argv[])
