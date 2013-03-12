@@ -5,7 +5,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#define BUF_SIZE 2014
+#define BUF_SIZE 1024
 #define LISTEN_PORT 6000
 
 int main(int argc,char **argv)
