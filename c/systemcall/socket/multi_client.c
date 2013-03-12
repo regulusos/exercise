@@ -17,7 +17,7 @@ int main(int argc,char *argv[])
 	int	bytes_send;
 	char	text[80];
 	char	buf[BUF_SIZE];
-	struct  sockaddr_in 	addr_send;
+	struct  sockaddr 	addr_send;
 	
 	sock_send=socket(PF_INET,SOCK_DGRAM,IPPROTO_UDP);
 	if(sock_send < 0)
