@@ -5,7 +5,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#define BUF_SIZE 2014
+#define BUF_SIZE 1024
 #define LISTEN_PORT 6000
 
 int main(int argc,char **argv)
@@ -13,7 +13,7 @@ int main(int argc,char **argv)
 	int		i;
 	int		sock_recv;
 	int		incoming_len;
-	int		recv_meg_size;
+	int		recv_msg_size;
 	int		select_ret;
 
 	char	buf[BUF_SIZE];	
@@ -22,6 +22,7 @@ int main(int argc,char **argv)
 
 	struct	sockaddr_in	my_addr;
 	struct	sockaddr_in	remote_addr;
+	struct	timeval		timeout={0,0};
 
 	sock_recv=socket(PF_INET,SOCK_DGRAM,IPPROTO_UDP);
 	if(sock_recv < 0)
@@ -62,10 +63,10 @@ int main(int argc,char **argv)
 				}
 			}
 		}
-		while(select_ret > 0)
+		while(select_ret > 0);
 			if(strcmp(buf,"shutdown")==0)
 				break;
 		close(sock_recv);
 	}
 
-
+}
