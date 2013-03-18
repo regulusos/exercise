@@ -31,12 +31,10 @@ int main(int argc,char *argv[])
 		exit(0);
 	}
 
-	memset(&my_addr,0,sizeof(my_addr));//清空结构
-	my_addr.sin_family=AF_INET;//地址类别
-	my_addr.sin_addr.s_addr=htonl(INADDR_ANY);//当前的ＩＰ
+	memset(&my_addr,0,sizeof(my_addr));		//清空结构
+	my_addr.sin_family=AF_INET;			//地址类别
+	my_addr.sin_addr.s_addr=htonl(INADDR_ANY);	//当前的ＩＰ
 	my_addr.sin_port= htons((unsigned short)LISTEN_PORT);//将套接字帮顶到本地
-
-	printf("Server ADDR %d\n",htonl(INADDR_ANY));	
 
 	i=bind(sock_listen,(struct sockaddr *)&my_addr,sizeof(my_addr));
 	

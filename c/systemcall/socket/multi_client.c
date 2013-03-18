@@ -17,7 +17,8 @@ int main(int argc,char *argv[])
 	int	bytes_send;
 	char	text[80];
 	char	buf[BUF_SIZE];
-	struct  sockaddr 	addr_send;
+
+	struct  sockaddr_in addr_send;
 	
 	sock_send=socket(PF_INET,SOCK_DGRAM,IPPROTO_UDP);
 	if(sock_send < 0)
@@ -40,7 +41,9 @@ int main(int argc,char *argv[])
 	
 	strcpy(buf,text);
 	send_len=strlen(text);
-	bytes_send=sendto(sock_send,buf,send_len,0,(struct sockaddr_in *)&addr_send,sizeof(addr_send));
+	bytes_send=sendto(sock_send, buf, send_len, 0,
+			  	(struct sockaddr *)&addr_send,
+				sizeof(addr_send));
 	}
 	close(sock_send);
 }
