@@ -138,6 +138,69 @@ int dlist_insert(D_LINK_LIST *thiz, int pos,int data)
 	}
 }
 
+int dlist_delete(D_LINK_LIST *thiz,int pos)
+{
+	int len=dlist_len(thiz);
+	
+	D_LINK_LIST *drop;
+	D_LINK_LIST *next;
+	D_LINK_LIST *head;
+
+	if(len > 0 && pos < len && pos > len )
+	{
+		if(pos == 1)
+		{
+			drop = thiz->next;
+			next = drop->next;
+
+			thiz->next = next;
+			next->prev = thiz;
+
+			drop->next = NULL;
+			drop->prev = NULL;
+			free(drop);
+			
+		}
+		if(pos == len)
+		{
+			next = thiz->next;
+			int i=1;
+			while(i < len && thiz != NULL )
+			{
+				next = next->next;
+				i++;
+			}
+				next->next = NULL;
+				
+				drop = next->next;
+				drop->next = NULL;
+				drop->prev = NULL;
+				free(drop);
+
+		}
+		else
+		{
+			head = thiz->next;
+			int i=1;
+			while(i < len && thiz != NULL )
+			{
+				head = head->next;
+				i++;
+			}
+				drop  = next->next;
+				next  = drop->next;
+
+				head->next = next;
+				next->prev = head;
+
+				drop->prev = NULL;
+				drop->next = NULL;
+				free(drop);	
+		}
+	}
+
+}
+
 int dlist_print(D_LINK_LIST *thiz)
 {
 	D_LINK_LIST *iter = thiz->next;

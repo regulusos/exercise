@@ -16,7 +16,7 @@ int main()
 	//new->prev=NULL;
 
 	int i;
-	for(i=1;i<30000;i++)
+	for(i=1;i<5;i++)
 	{
 	dlist_insert(new,i,i);
 	}
@@ -24,10 +24,13 @@ int main()
 	printf("## %d\n",dlist_len(new));
 
 	int max;
+
+	dlist_delete(new,1);
+	
 	max=dlist_find_max(new);
+	printf("max is %d\n",max);
 
-	printf("max is %d",max);
-
+	dlist_print(new);
 	dlist_drop(new);
 
 }
