@@ -4,31 +4,40 @@ int print(D_LINK_LIST *thiz)
 {
 	printf("%d\n",thiz->data);
 }
-
-int dlist_init(D_LINK_LIST *thiz)
+int dlist_init()
 {
-	thiz = (D_LINK_LIST *)malloc(sizeof(D_LINK_LIST));
+	D_LINK_LIST* thiz = (D_LINK_LIST *)malloc(sizeof(D_LINK_LIST));
 	if(thiz == NULL)
 	{
+		printf("malloc is fialed!");
 		return 1;
-		thiz->prev = thiz->next = NULL;
 	}
 	else
-	{	return 0;
+	{	
+		thiz->prev = thiz->next = NULL;
+		return thiz;
 	}
 }
 
 int dlist_len(D_LINK_LIST *thiz)
 {
-	int i = 0;
 	D_LINK_LIST *tmp;
-	tmp=thiz;
-	while(tmp != NULL)
+
+	if(thiz->next == NULL)
 	{
-		tmp=tmp->next;
-		i++;
+		return 0;
 	}
-	return i; 
+	else
+	{
+		int i = 0;
+		tmp=thiz->next;
+		while(tmp != NULL)
+		{
+			tmp=tmp->next;
+			i++;
+		}
+		return i; 
+	}
 }
 int dlist_drop(D_LINK_LIST *thiz)
 {
@@ -52,31 +61,67 @@ int dlist_insert(D_LINK_LIST *thiz, int pos,int data)
 	iter->prev=NULL;
 	iter->next=NULL;
 
-	if(pos < 0 && pos >len)
+	if(pos <= 0 )
 	{
-		printf("error input pos");
-		return 1;
+		if(pos <=0 )
+		{	
+			printf("pos is must be > 0 ");
+		    return 1;
+		}
+		if(pos > len)
+		{	
+			printf("pos is must be < len ");
+		    return 2;
+		}
 	}
 	
-	if(len == 0 && pos == 0)
-	{
-		thiz = iter;
-		return 0;		
-	}
-	
-	if(len > 0 && pos == 0)
+	if(len == 0 && pos == 1)
 	{
 		tmp = thiz;
-		iter->next = tmp;
-		tmp->prev  = iter;
-		return 0;
+		
+		tmp->prev  = NULL;
+		tmp->next  = iter;
+
+		iter->prev = tmp;
+		iter->next = NULL;
+
 	}
-	if(len > 0 && pos > 0 && pos < len)
+	
+	if(len > 0 && pos == 1)
+	{
+		tmp = thiz;
+		new = thiz->next;
+
+		tmp->prev  = NULL;
+		tmp->next  = iter;
+
+		iter->prev = tmp ;
+		iter->next = new ;
+
+
+	}
+	
+	if(len > 0 && pos-len == 1)
+	{
+		int i = 1;
+		tmp = thiz->next;
+
+		while(i < len)
+		{
+			tmp=tmp->next;
+			i++;
+		}
+		tmp->next  = iter;
+		iter->prev = tmp;
+	}
+	
+	if(len > 0 && pos > 1 && pos <= len)
 	{
 		
-		i=0;
-		tmp=thiz;
-		while(i < len-1 && tmp != NULL)
+		int i = 1;
+
+		tmp = thiz->next;
+		while(i < pos )
 		{
 			tmp = tmp->next;
 			i++;
@@ -91,27 +136,15 @@ int dlist_insert(D_LINK_LIST *thiz, int pos,int data)
 		new->prev  = iter;
 		
 	}
-	if(len > 0 && len == pos)
-	{
-		i=0;
-		tmp=thiz;
-		while(i < len-1 && tmp != NULL)
-		{
-			tmp = tmp->next;
-			i++;
-		}
-		
-		
-	}
 }
 
 int dlist_print(D_LINK_LIST *thiz)
 {
-	D_LINK_LIST *iter = thiz;
+	D_LINK_LIST *iter = thiz->next;
 	if(iter != NULL)
 	{
 		print(iter);
-		dlist_print(iter->next);
+		dlist_print(iter);
 	}
 }
 
@@ -123,8 +156,8 @@ int dlist_print(D_LINK_LIST *thiz)
 int dlist_find_max(D_LINK_LIST *thiz)
 {
 	int max = 0;
-	D_LINK_LIST *iter = thiz;
-	while(iter != NULL && iter != NULL)
+	D_LINK_LIST *iter = thiz->next;
+	while(iter != NULL)
 	{
 		if(max <= iter->data)
 		{

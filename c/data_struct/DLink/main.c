@@ -7,25 +7,28 @@ int test(D_LINK_LIST *thiz)
 int main()
 {
 	D_LINK_LIST *new;
-	new=(D_LINK_LIST *)malloc(sizeof(D_LINK_LIST));
-	new->data=0;
 
-	dlist_insert(new,0,0);
-	dlist_insert(new,0,1);
-	dlist_insert(new,0,2);
-	dlist_insert(new,0,2);
-	dlist_insert(new,0,2);
-	dlist_insert(new,0,2);
-	//dlist_insert(new,1,1);
-	//dlist_insert(new,1,1);
-	//dlist_insert(new,1,1);
+	new=dlist_init();
 
-	//printf("%d\n",dlist_len(new));
+	//new=(D_LINK_LIST *)malloc(sizeof(D_LINK_LIST));
+	//new->data=0;
+	//new->next=NULL;
+	//new->prev=NULL;
 
-	//dlist_insert(new,1,1);
-	//dlist_print(new);
-	//dlist_drop(new);
-	dlist_print(new);
+	int i;
+	for(i=1;i<30000;i++)
+	{
+	dlist_insert(new,i,i);
+	}
+
+	printf("## %d\n",dlist_len(new));
+
+	int max;
+	max=dlist_find_max(new);
+
+	printf("max is %d",max);
+
+	dlist_drop(new);
 
 }
 

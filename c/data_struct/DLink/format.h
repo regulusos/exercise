@@ -10,7 +10,7 @@ typedef struct _D_LINK_LIST
 
 int print(D_LINK_LIST* thiz);
 
-int dlist_init(D_LINK_LIST *thiz);
+int dlist_init();
 int dlist_drop(D_LINK_LIST *thiz);
 
 int dlist_len(D_LINK_LIST *thiz);
