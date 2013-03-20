@@ -4,6 +4,17 @@ int print(D_LINK_LIST *thiz)
 {
 	printf("%d\n",thiz->data);
 }
+
+int dlist_print(D_LINK_LIST *thiz)
+{
+	D_LINK_LIST *iter = thiz->next;
+	while(iter != NULL)
+	{
+		print(iter);
+		iter = iter->next;
+	}
+}
+
 int dlist_init()
 {
 	D_LINK_LIST* thiz = (D_LINK_LIST *)malloc(sizeof(D_LINK_LIST));
@@ -19,34 +30,57 @@ int dlist_init()
 	}
 }
 
+D_LINK_LIST* dlist_foreach(D_LINK_LIST *thiz,int pos)
+{
+	int i=1;
+	D_LINK_LIST *iter=thiz->next;
+
+	while(i < pos)
+	{
+		iter = iter->next;
+	}
+	return iter;
+}
+
 int dlist_len(D_LINK_LIST *thiz)
 {
-	D_LINK_LIST *tmp;
+	D_LINK_LIST *tmp=thiz->next;
 
-	if(thiz->next == NULL)
-	{
+	int i = 0;
+	if(tmp == NULL)
+	{	
 		return 0;
 	}
 	else
-	{
-		int i = 0;
-		tmp=thiz->next;
+	{	
 		while(tmp != NULL)
 		{
-			tmp=tmp->next;
+			tmp = tmp->next;
 			i++;
 		}
-		return i; 
+		return i;
 	}
 }
+
 int dlist_drop(D_LINK_LIST *thiz)
 {
-	D_LINK_LIST *tmp=thiz;
-	while(tmp != NULL)
+	/*D_LINK_LIST *tmp ;
+	while( thiz != NULL)
 	{
-		tmp = tmp->next;
+		tmp  = thiz;
+		thiz = thiz->next;
 		free(tmp);
 	}
+	i*/
+
+	if(thiz != NULL)
+	{
+		dlist_drop(thiz->next);
+		thiz->next = NULL;
+		thiz->prev = NULL;
+		free(thiz);
+	}
+
 }
 
 int dlist_insert(D_LINK_LIST *thiz, int pos,int data)
@@ -201,15 +235,6 @@ int dlist_delete(D_LINK_LIST *thiz,int pos)
 
 }
 
-int dlist_print(D_LINK_LIST *thiz)
-{
-	D_LINK_LIST *iter = thiz->next;
-	if(iter != NULL)
-	{
-		print(iter);
-		dlist_print(iter);
-	}
-}
 
 
 
