@@ -32,12 +32,19 @@ int dlist_init()
 
 D_LINK_LIST* dlist_foreach(D_LINK_LIST *thiz,int pos)
 {
-	int i=1;
+	int i = 1;
+	int len = dlist_len(thiz);
+
 	D_LINK_LIST *iter=thiz->next;
 
-	while(i < pos)
+	if(pos > len)
+		printf("postion is long than real len pos is %d\n len is %d\n",pos,len);
+	
+
+	while(i < pos )
 	{
 		iter = iter->next;
+		i++;
 	}
 	return iter;
 }
@@ -64,15 +71,18 @@ int dlist_len(D_LINK_LIST *thiz)
 
 int dlist_drop(D_LINK_LIST *thiz)
 {
-	/*D_LINK_LIST *tmp ;
+	D_LINK_LIST *tmp ;
 	while( thiz != NULL)
 	{
 		tmp  = thiz;
 		thiz = thiz->next;
+		
+		tmp->next = NULL;
+		tmp->prev = NULL;
 		free(tmp);
 	}
-	i*/
 
+	/*
 	if(thiz != NULL)
 	{
 		dlist_drop(thiz->next);
@@ -80,6 +90,7 @@ int dlist_drop(D_LINK_LIST *thiz)
 		thiz->prev = NULL;
 		free(thiz);
 	}
+	*/
 
 }
 

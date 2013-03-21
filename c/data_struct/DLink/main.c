@@ -16,7 +16,8 @@ int main()
 		dlist_insert(new,i,i);
 	}
 
-
+	printf("i##%d\n",dlist_len(new));
+	
 	dlist_print(new);
 	dlist_drop(new);
 	dlist_print(new);
