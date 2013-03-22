@@ -30,12 +30,34 @@ int dlist_init()
 	}
 }
 
+int dlist_free(D_LINK_LIST *thiz)
+{
+	D_LINK_LIST *tmp;
+	tmp=thiz;
+	if(tmp != NULL)
+	{
+		tmp->next = NULL;
+		tmp->prev = NULL;
+		free(tmp);
+		return 0;
+	}
+	else
+	{
+		printf("error can't free a empty memdiv\n");
+		return 1;
+	}
+
+
+}
+
+
 D_LINK_LIST* dlist_foreach(D_LINK_LIST *thiz,int pos)
 {
-	int i = 1;
+	int i = 0;
 	int len = dlist_len(thiz);
-
-	D_LINK_LIST *iter=thiz->next;
+	//D_LINK_LIST *iter=thiz->next;
+	D_LINK_LIST *iter=thiz;
+	iter=thiz;
 
 	if(pos > len)
 		printf("postion is long than real len pos is %d\n len is %d\n",pos,len);
@@ -191,66 +213,48 @@ int dlist_delete(D_LINK_LIST *thiz,int pos)
 	D_LINK_LIST *next;
 	D_LINK_LIST *head;
 
-	if(len > 0 && pos < len && pos > len )
-	{
-		if(pos == 1)
+		if(pos == 1 && len == 1)
 		{
 			drop = thiz->next;
-			next = drop->next;
-
-			thiz->next = next;
-			next->prev = thiz;
-
-			drop->next = NULL;
-			drop->prev = NULL;
-			free(drop);
-			
+			thiz->next = NULL;
+			dlist_drop(drop);
 		}
-		if(pos == len)
+		else
 		{
-			next = thiz->next;
-			int i=1;
-			while(i < len && thiz != NULL )
+			if(pos == 1)
 			{
-				next = next->next;
-				i++;
-			}
-				next->next = NULL;
-				
-				drop = next->next;
+				drop = dlist_foreach(thiz,pos);
+				next = dlist_foreach(thiz,pos+1);
+				thiz->next = next;
+				next->prev = thiz;
+
 				drop->next = NULL;
 				drop->prev = NULL;
 				free(drop);
 
-		}
-		else
-		{
-			head = thiz->next;
-			int i=1;
-			while(i < len && thiz != NULL )
-			{
-				head = head->next;
-				i++;
 			}
-				drop  = next->next;
-				next  = drop->next;
+			if(pos == len)
+			{
+				
+				drop = dlist_foreach(thiz,pos);
+				head = dlist_foreach(thiz,pos-1);
+				
+				head->next = NULL;
+				dlist_free(drop);
+			}
+			else
+			{
 
+				head = dlist_foreach(thiz,pos-1);
+				drop = dlist_foreach(thiz,pos);
+				next = dlist_foreach(thiz,pos+1);
 				head->next = next;
 				next->prev = head;
-
-				drop->prev = NULL;
-				drop->next = NULL;
-				free(drop);	
+			
+				dlist_free(drop);
+			}
 		}
-	}
-
 }
-
-
-
-
-
-
 
 int dlist_find_max(D_LINK_LIST *thiz)
 {

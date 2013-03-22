@@ -8,6 +8,7 @@ int main()
 {
 	int i;
 	D_LINK_LIST *new;
+	D_LINK_LIST *tmp;
 
 	new=dlist_init();
 
@@ -16,11 +17,13 @@ int main()
 		dlist_insert(new,i,i);
 	}
 
-	printf("i##%d\n",dlist_len(new));
+
+	dlist_print(new);
+	dlist_delete(new,1);
+	printf("######################################\n");
+	dlist_print(new);
 	
-	dlist_print(new);
 	dlist_drop(new);
-	dlist_print(new);
 
 }
 
