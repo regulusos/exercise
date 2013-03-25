@@ -17,9 +17,16 @@ int main()
 		dlist_insert(new,i,i);
 	}
 
+				printf("new is %p\n",new);
+				printf("new->next is %p\n",new->next);
+				printf("new->next->next is %p\n",new->next->next);
 
 	dlist_print(new);
+	dlist_delete(new,5);
 	dlist_delete(new,1);
+				printf("new is %p\n",new);
+				printf("new->next is %p\n",new->next);
+				printf("new->next->next is %p\n",new->next->next);
 	printf("######################################\n");
 	dlist_print(new);
 	

@@ -60,7 +60,7 @@ D_LINK_LIST* dlist_foreach(D_LINK_LIST *thiz,int pos)
 	iter=thiz;
 
 	if(pos > len)
-		printf("postion is long than real len pos is %d\n len is %d\n",pos,len);
+		printf("postion is long than real len ... pos is %d\n len is %d\n",pos,len);
 	
 
 	while(i < pos )
@@ -213,47 +213,40 @@ int dlist_delete(D_LINK_LIST *thiz,int pos)
 	D_LINK_LIST *next;
 	D_LINK_LIST *head;
 
-		if(pos == 1 && len == 1)
-		{
-			drop = thiz->next;
-			thiz->next = NULL;
-			dlist_drop(drop);
+	if(pos == 1 && len == 1)
+	{
+		drop = thiz->next;
+		thiz->next = NULL;
+		dlist_drop(drop);
+	}
+	if(pos == 1 && len > 1)
+	{
+		drop = dlist_foreach(thiz,pos);
+		next = dlist_foreach(thiz,pos+1);
+		printf("drop is %p\n",drop);
+		printf("next is %p\n",next);
+		thiz->next = next;
+		next->prev = thiz;
+		dlist_free(drop);
 		}
-		else
-		{
-			if(pos == 1)
-			{
-				drop = dlist_foreach(thiz,pos);
-				next = dlist_foreach(thiz,pos+1);
-				thiz->next = next;
-				next->prev = thiz;
-
-				drop->next = NULL;
-				drop->prev = NULL;
-				free(drop);
-
-			}
-			if(pos == len)
-			{
-				
-				drop = dlist_foreach(thiz,pos);
-				head = dlist_foreach(thiz,pos-1);
-				
-				head->next = NULL;
-				dlist_free(drop);
-			}
-			else
-			{
-
-				head = dlist_foreach(thiz,pos-1);
-				drop = dlist_foreach(thiz,pos);
-				next = dlist_foreach(thiz,pos+1);
-				head->next = next;
-				next->prev = head;
+	if(pos >1 && len > 1 && pos == len)
+	{
 			
-				dlist_free(drop);
-			}
-		}
+		drop = dlist_foreach(thiz,pos);
+		head = dlist_foreach(thiz,pos-1);
+		head->next = NULL;
+		dlist_free(drop);
+	}
+	if(pos >1 && len >1 && pos < len)	
+	{
+
+		head = dlist_foreach(thiz,pos-1);
+		drop = dlist_foreach(thiz,pos);
+		next = dlist_foreach(thiz,pos+1);
+		head->next = next;
+		next->prev = head;
+		dlist_free(drop);
+	}
 }
 
 int dlist_find_max(D_LINK_LIST *thiz)
