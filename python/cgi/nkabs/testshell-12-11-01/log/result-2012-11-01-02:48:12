@@ -1,0 +1,191 @@
+fs_test
+testcasename		results
+Type is ext2
+1+0 records in
+1+0 records out
+1048576 bytes (1.0 MB) copied, 0.00156 seconds, 672 MB/s
+mke2fs 1.39 (29-May-2006)
+/tmp/fstest is not a block special device.
+Proceed anyway? (y,n) Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+128 inodes, 1024 blocks
+51 blocks (4.98%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=1048576
+1 block group
+8192 blocks per group, 8192 fragments per group
+128 inodes per group
+
+Writing inode tables: 0/1done                            
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 31 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+0
+ext2		PASS		
+Type is ext3
+1+0 records in
+1+0 records out
+1048576 bytes (1.0 MB) copied, 0.00157 seconds, 668 MB/s
+mke2fs 1.39 (29-May-2006)
+/tmp/fstest is not a block special device.
+Proceed anyway? (y,n) Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+128 inodes, 1024 blocks
+51 blocks (4.98%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=1048576
+1 block group
+8192 blocks per group, 8192 fragments per group
+128 inodes per group
+
+Writing inode tables: 0/1done                            
+
+Filesystem too small for a journal
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 25 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+0
+ext3		PASS		
+Type is ext4
+1+0 records in
+1+0 records out
+1048576 bytes (1.0 MB) copied, 0.001569 seconds, 668 MB/s
+mke4fs 1.41.12 (17-May-2010)
+/tmp/fstest is not a block special device.
+Proceed anyway? (y,n) Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+128 inodes, 1024 blocks
+51 blocks (4.98%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=1048576
+1 block group
+8192 blocks per group, 8192 fragments per group
+128 inodes per group
+
+Writing inode tables: 0/1done                            
+
+Filesystem too small for a journal
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 22 mounts or
+180 days, whichever comes first.  Use tune4fs -c or -i to override.
+mount: you must specify the filesystem type
+umount: /mnt: not mounted
+0
+ext4		PASS		
+Type is msdos
+1+0 records in
+1+0 records out
+1048576 bytes (1.0 MB) copied, 0.001558 seconds, 673 MB/s
+mkfs.msdos 2.11 (12 Mar 2005)
+0
+msdos		PASS		
+Type is ntfs
+1+0 records in
+1+0 records out
+1048576 bytes (1.0 MB) copied, 0.001612 seconds, 650 MB/s
+/tmp/fstest is not a block device.
+mkntfs forced anyway.
+The sector size was not specified for /tmp/fstest and it could not be obtained automatically.  It has been set to 512 bytes.
+The partition start sector was not specified for /tmp/fstest and it could not be obtained automatically.  It has been set to 0.
+The number of sectors per track was not specified for /tmp/fstest and it could not be obtained automatically.  It has been set to 0.
+The number of heads was not specified for /tmp/fstest and it could not be obtained automatically.  It has been set to 0.
+Device is too small (1023kiB).  Minimum NTFS volume size is 1MiB.
+mount: you must specify the filesystem type
+umount: /mnt: not mounted
+0
+ntfs		PASS		
+Type is vfat
+1+0 records in
+1+0 records out
+1048576 bytes (1.0 MB) copied, 0.001564 seconds, 670 MB/s
+mkfs.vfat 2.11 (12 Mar 2005)
+0
+vfat		PASS		
+Type is xfs
+1+0 records in
+1+0 records out
+1048576 bytes (1.0 MB) copied, 0.00155 seconds, 677 MB/s
+agsize (256b) too small, need at least 4096 blocks
+Usage: mkfs.xfs
+/* blocksize */		[-b log=n|size=num]
+/* data subvol */	[-d agcount=n,agsize=n,file,name=xxx,size=num,
+			    (sunit=value,swidth=value|su=num,sw=num),
+			    sectlog=n|sectsize=num,unwritten=0|1]
+/* inode size */	[-i log=n|perblock=n|size=num,maxpct=n,attr=0|1|2]
+/* log subvol */	[-l agnum=n,internal,size=num,logdev=xxx,version=n
+			    sunit=value|su=num,sectlog=n|sectsize=num,
+			    lazy-count=0|1]
+/* label */		[-L label (maximum 12 characters)]
+/* naming */		[-n log=n|size=num,version=n]
+/* prototype file */	[-p fname]
+/* quiet */		[-q]
+/* realtime subvol */	[-r extsize=num,size=num,rtdev=xxx]
+/* sectorsize */	[-s log=n|size=num]
+/* version */		[-V]
+			devicename
+<devicename> is required unless -d name=xxx is given.
+<num> is xxx (bytes), xxxs (sectors), xxxb (fs blocks), xxxk (xxx KiB),
+      xxxm (xxx MiB), xxxg (xxx GiB), xxxt (xxx TiB) or xxxp (xxx PiB).
+<value> is xxx (512 byte blocks).
+mount: you must specify the filesystem type
+umount: /mnt: not mounted
+0
+xfs		PASS		
+FATAL: Module md_mod not found.
+启动 NFS 服务： [确定]
+关掉 NFS 配额：[确定]
+启动 NFS 守护进程：[确定]
+启动 NFS mountd：[确定]
+正在启动 RPC idmapd：[确定]
+关闭 NFS mountd：[确定]
+关闭 NFS 守护进程：[确定]
+关闭 NFS quotas：[确定]
+关闭 NFS 服务： [确定]
+启动 NFS 服务： [确定]
+关掉 NFS 配额：[确定]
+启动 NFS 守护进程：[确定]
+启动 NFS mountd：[确定]
+mount.nfs: /data/2012/kernel-test/testshell-12-05-02/tmp is already mounted or busy
+关闭 NFS mountd：[确定]
+关闭 NFS 守护进程：[确定]
+关闭 NFS quotas：[确定]
+关闭 NFS 服务： [确定]
+umount.nfs: 127.0.0.1:/home/nfs_mnt-2012-11-01-02:31:34: not found / mounted or server not reachable
+umount.nfs: 127.0.0.1:/home/nfs_mnt-2012-11-01-02:31:34: not found / mounted or server not reachable
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+清除防火墙规则：[确定]
+把 chains 设置为 ACCEPT 策略：filter [确定]
+正在卸载 iptables 模块：[确定]
+启动 httpd：httpd: Could not reliably determine the server's fully qualified domain name, using 10.1.40.70 for ServerName
+[确定]
+停止 httpd：[确定]
+为 vsftpd 启动 vsftpd：[确定]
+关闭 vsftpd：[确定]
+启动 sendmail：[确定]
+启动 sm-client：[确定]
+关闭 sm-client：[确定]
+关闭 sendmail：[确定]
+Starting SCSI target daemon: Starting target framework daemon
+
+Stopping SCSI target daemon: Stopping target framework daemon
+[确定]
+启动 xinetd：[确定]
+./testservice.sh: line 94: ./cmd/ksm05: cannot execute binary file
+./testservice.sh: line 98: ./cmd/fork12: cannot execute binary file

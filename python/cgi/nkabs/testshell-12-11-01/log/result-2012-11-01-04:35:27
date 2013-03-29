@@ -1,0 +1,194 @@
+fs_test
+testcasename		results
+Type is ext2
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB) copied, 0.083013 seconds, 1.3 GB/s
+mke2fs 1.39 (29-May-2006)
+/tmp/fstest is not a block special device.
+Proceed anyway? (y,n) Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+25688 inodes, 102400 blocks
+5120 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67371008
+13 block groups
+8192 blocks per group, 8192 fragments per group
+1976 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+Writing inode tables:  0/13 1/13 2/13 3/13 4/13 5/13 6/13 7/13 8/13 9/1310/1311/1312/13done                            
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 21 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+0
+ext2 			[PASS]
+Type is ext3
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB) copied, 0.082171 seconds, 1.3 GB/s
+mke2fs 1.39 (29-May-2006)
+/tmp/fstest is not a block special device.
+Proceed anyway? (y,n) Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+25688 inodes, 102400 blocks
+5120 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67371008
+13 block groups
+8192 blocks per group, 8192 fragments per group
+1976 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+Writing inode tables:  0/13 1/13 2/13 3/13 4/13 5/13 6/13 7/13 8/13 9/1310/1311/1312/13done                            
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 39 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+0
+ext3 			[PASS]
+Type is ext4
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB) copied, 0.081412 seconds, 1.3 GB/s
+mke4fs 1.41.12 (17-May-2010)
+/tmp/fstest is not a block special device.
+Proceed anyway? (y,n) Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+25688 inodes, 102400 blocks
+5120 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67371008
+13 block groups
+8192 blocks per group, 8192 fragments per group
+1976 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+Writing inode tables:  0/13 1/13 2/13 3/13 4/13 5/13 6/13 7/13 8/13 9/1310/1311/1312/13done                            
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 37 mounts or
+180 days, whichever comes first.  Use tune4fs -c or -i to override.
+0
+ext4 			[PASS]
+Type is msdos
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB) copied, 0.087845 seconds, 1.2 GB/s
+mkfs.msdos 2.11 (12 Mar 2005)
+0
+msdos 			[PASS]
+Type is ntfs
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB) copied, 0.081766 seconds, 1.3 GB/s
+/tmp/fstest is not a block device.
+mkntfs forced anyway.
+The sector size was not specified for /tmp/fstest and it could not be obtained automatically.  It has been set to 512 bytes.
+The partition start sector was not specified for /tmp/fstest and it could not be obtained automatically.  It has been set to 0.
+The number of sectors per track was not specified for /tmp/fstest and it could not be obtained automatically.  It has been set to 0.
+The number of heads was not specified for /tmp/fstest and it could not be obtained automatically.  It has been set to 0.
+Cluster size has been automatically set to 4096 bytes.
+To boot from a device, Windows needs the 'partition start sector', the 'sectors per track' and the 'number of heads' to be set.
+Windows will not be able to boot from this device.
+Initializing device with zeroes:   0%  0%  1%  2%  3%  4%  5%  6%  7%  8%  9% 10% 11% 12% 13% 14% 15% 16% 17% 18% 19% 20% 21% 22% 23% 24% 25% 26% 27% 28% 29% 30% 31% 32% 33% 34% 35% 36% 37% 38% 39% 40% 41% 42% 43% 44% 45% 46% 47% 48% 49% 50% 51% 52% 53% 54% 55% 56% 57% 58% 59% 60% 61% 62% 63% 64% 65% 66% 67% 68% 69% 70% 71% 72% 73% 74% 75% 76% 77% 78% 79% 80% 81% 82% 83% 84% 85% 86% 87% 88% 89% 90% 91% 92% 93% 94% 95% 96% 97% 98% 99%100% - Done.
+Creating NTFS volume structures.
+mkntfs completed successfully. Have a nice day.
+0
+ntfs 			[PASS]
+Type is vfat
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB) copied, 0.096715 seconds, 1.1 GB/s
+mkfs.vfat 2.11 (12 Mar 2005)
+mount: could not find any free loop device
+umount: /mnt: not mounted
+0
+vfat 			[PASS]
+Type is xfs
+1+0 records in
+1+0 records out
+104857600 bytes (105 MB) copied, 0.082278 seconds, 1.3 GB/s
+meta-data=/tmp/fstest            isize=256    agcount=6, agsize=4096 blks
+         =                       sectsz=512   attr=0
+data     =                       bsize=4096   blocks=24576, imaxpct=25
+         =                       sunit=0      swidth=0 blks, unwritten=1
+naming   =version 2              bsize=4096  
+log      =internal log           bsize=4096   blocks=1200, version=1
+         =                       sectsz=512   sunit=0 blks, lazy-count=0
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+mount: could not find any free loop device
+umount: /mnt: not mounted
+0
+xfs 			[PASS]
+testcasename		results
+ext2 			[PASS]
+ext3 			[PASS]
+ext4 			[PASS]
+msdos 			[PASS]
+ntfs 			[PASS]
+vfat 			[PASS]
+xfs 			[PASS]
+mount: could not find any free loop device
+umount.nfs: 127.0.0.1:/home/nfs_mnt-2012-11-01-04:18:24: not found / mounted or server not reachable
+umount.nfs: 127.0.0.1:/home/nfs_mnt-2012-11-01-04:18:24: not found / mounted or server not reachable
+FATAL: Module md_mod not found.
+启动 NFS 服务： [确定]
+关掉 NFS 配额：[确定]
+启动 NFS 守护进程：[确定]
+启动 NFS mountd：[确定]
+关闭 NFS mountd：[确定]
+关闭 NFS 守护进程：[确定]
+关闭 NFS quotas：[确定]
+关闭 NFS 服务： [确定]
+启动 NFS 服务： [确定]
+关掉 NFS 配额：[确定]
+启动 NFS 守护进程：[确定]
+启动 NFS mountd：[确定]
+mount.nfs: /data/2012/kernel-test/testshell-12-05-02/tmp is already mounted or busy
+关闭 NFS mountd：[确定]
+关闭 NFS 守护进程：[确定]
+关闭 NFS quotas：[确定]
+关闭 NFS 服务： [确定]
+umount.nfs: 127.0.0.1:/home/nfs_mnt-2012-11-01-04:18:24: not found / mounted or server not reachable
+umount.nfs: 127.0.0.1:/home/nfs_mnt-2012-11-01-04:18:24: not found / mounted or server not reachable
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+清除防火墙规则：[确定]
+把 chains 设置为 ACCEPT 策略：filter [确定]
+正在卸载 iptables 模块：[确定]
+启动 httpd：httpd: Could not reliably determine the server's fully qualified domain name, using 10.1.40.70 for ServerName
+[确定]
+停止 httpd：[确定]
+为 vsftpd 启动 vsftpd：[确定]
+关闭 vsftpd：[确定]
+启动 sendmail：[确定]
+启动 sm-client：[确定]
+关闭 sm-client：[确定]
+关闭 sendmail：[确定]
+Starting SCSI target daemon: Starting target framework daemon
+
+Stopping SCSI target daemon: Stopping target framework daemon
+[确定]
+启动 xinetd：
+./testservice.sh: line 94: ./cmd/ksm05: cannot execute binary file
+./testservice.sh: line 98: ./cmd/fork12: cannot execute binary file

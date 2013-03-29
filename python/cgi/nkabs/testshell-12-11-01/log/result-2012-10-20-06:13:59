@@ -1,0 +1,249 @@
+mount: mount point ./tmp does not exist
+umount: ./tmp: not found
+FATAL: Module md_mod not found.
+启动 NFS 服务： [确定]
+启动 NFS 守护进程：[失败]
+启动 NFS 服务： [确定]
+启动 NFS 守护进程：[失败]
+mount.nfs: unrecognized mount point ./tmp
+关闭 NFS mountd：[失败]
+关闭 NFS 守护进程：[失败]
+关闭 NFS 服务： [确定]
+umount: ./tmp: not found
+为 vsftpd 启动 vsftpd：[确定]
+关闭 vsftpd：[确定]
+sendmail: 未被识别的服务
+smb: 未被识别的服务
+tgtd: 未被识别的服务
+testservice.sh: line 161: /usr/sbin/ypserv: 没有那个文件或目录
+正在启动 ntpd：[确定]
+关闭 ntpd：[确定]
+正在启动 xinetd：
+testservice.sh: line 94: ./cmd/ksm05: cannot execute binary file
+fs_test
+testcasename			results
+Type is ext2
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.34896 秒，300 MB/秒
+mke2fs 1.41.12 (17-May-2010)
+/tmp/fstest is not a block special device.
+无论如何也要继续? (y,n) 文件系统标签=
+操作系统:Linux
+块大小=1024 (log=0)
+分块大小=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+25688 inodes, 102400 blocks
+5120 blocks (5.00%) reserved for the super user
+第一个数据块=1
+Maximum filesystem blocks=67371008
+13 block groups
+8192 blocks per group, 8192 fragments per group
+1976 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+正在写入inode表:  0/13 1/13 2/13 3/13 4/13 5/13 6/13 7/13 8/13 9/1310/1311/1312/13完成                            
+Writing superblocks and filesystem accounting information: 完成
+
+This filesystem will be automatically checked every 20 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+0
+ext2
+[0B[35C[[32mPASS[0m]
+Type is ext3
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.180369 秒，581 MB/秒
+mke2fs 1.41.12 (17-May-2010)
+/tmp/fstest is not a block special device.
+无论如何也要继续? (y,n) 文件系统标签=
+操作系统:Linux
+块大小=1024 (log=0)
+分块大小=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+25688 inodes, 102400 blocks
+5120 blocks (5.00%) reserved for the super user
+第一个数据块=1
+Maximum filesystem blocks=67371008
+13 block groups
+8192 blocks per group, 8192 fragments per group
+1976 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+正在写入inode表:  0/13 1/13 2/13 3/13 4/13 5/13 6/13 7/13 8/13 9/1310/1311/1312/13完成                            
+Creating journal (4096 blocks): 完成
+Writing superblocks and filesystem accounting information: 完成
+
+This filesystem will be automatically checked every 27 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+0
+ext3
+[0B[35C[[32mPASS[0m]
+Type is ext4
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.195347 秒，537 MB/秒
+mke2fs 1.41.12 (17-May-2010)
+/tmp/fstest is not a block special device.
+无论如何也要继续? (y,n) 文件系统标签=
+操作系统:Linux
+块大小=1024 (log=0)
+分块大小=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+25688 inodes, 102400 blocks
+5120 blocks (5.00%) reserved for the super user
+第一个数据块=1
+Maximum filesystem blocks=67371008
+13 block groups
+8192 blocks per group, 8192 fragments per group
+1976 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+正在写入inode表:  0/13 1/13 2/13 3/13 4/13 5/13 6/13 7/13 8/13 9/1310/1311/1312/13完成                            
+Creating journal (4096 blocks): 完成
+Writing superblocks and filesystem accounting information: 完成
+
+This filesystem will be automatically checked every 39 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+0
+ext4
+[0B[35C[[32mPASS[0m]
+Type is ext4
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.183826 秒，570 MB/秒
+mke2fs 1.41.12 (17-May-2010)
+/tmp/fstest is not a block special device.
+无论如何也要继续? (y,n) 文件系统标签=
+操作系统:Linux
+块大小=1024 (log=0)
+分块大小=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+25688 inodes, 102400 blocks
+5120 blocks (5.00%) reserved for the super user
+第一个数据块=1
+Maximum filesystem blocks=67371008
+13 block groups
+8192 blocks per group, 8192 fragments per group
+1976 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+正在写入inode表:  0/13 1/13 2/13 3/13 4/13 5/13 6/13 7/13 8/13 9/1310/1311/1312/13完成                            
+Creating journal (4096 blocks): 完成
+Writing superblocks and filesystem accounting information: 完成
+
+This filesystem will be automatically checked every 39 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+0
+ext4
+[0B[35C[[32mPASS[0m]
+Type is msdos
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.188097 秒，557 MB/秒
+mkfs.msdos 3.0.9 (31 Jan 2010)
+0
+msdos
+[0B[35C[[32mPASS[0m]
+Type is btrfs
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.191444 秒，548 MB/秒
+./run_fstest.sh: line 45: mkfs.btrfs: command not found
+1
+btrfs
+[0B[35C[[31mFAIL[0m]
+Type is xfs
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.402418 秒，261 MB/秒
+meta-data=/tmp/fstest            isize=256    agcount=4, agsize=6400 blks
+         =                       sectsz=512   attr=2
+data     =                       bsize=4096   blocks=25600, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0
+log      =internal log           bsize=4096   blocks=1200, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+0
+xfs
+[0B[35C[[32mPASS[0m]
+Type is jfs
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.194034 秒，540 MB/秒
+./run_fstest.sh: line 45: mkfs.jfs: command not found
+1
+jfs
+[0B[35C[[31mFAIL[0m]
+Type is reiserfs
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.312161 秒，336 MB/秒
+./run_fstest.sh: line 45: mkfs.reiserfs: command not found
+1
+reiserfs
+[0B[35C[[31mFAIL[0m]
+Type is cramfs
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.387545 秒，271 MB/秒
+usage: mkfs.cramfs [-h] [-v] [-b blksize] [-e edition] [-N endian] [-i file] [-n name] dirname outfile
+ -h         print this help
+ -v         be verbose
+ -E         make all warnings errors (non-zero exit status)
+ -b blksize use this blocksize, must equal page size
+ -e edition set edition number (part of fsid)
+ -N endian  set cramfs endianness (big|little|host), default host
+ -i file    insert a file image into the filesystem (requires >= 2.4.0)
+ -n name    set name of cramfs filesystem
+ -p         pad by 512 bytes for boot code
+ -s         sort directory entries (old option, ignored)
+ -z         make explicit holes (requires >= 2.3.39)
+ dirname    root of the filesystem to be compressed
+ outfile    output file
+1
+cramfs
+[0B[35C[[31mFAIL[0m]
+Type is ntfs
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.401293 秒，261 MB/秒
+./run_fstest.sh: line 43: mkfs.ntfs: command not found
+1
+ntfs
+[0B[35C[[31mFAIL[0m]
+Type is gfs2
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.355235 秒，295 MB/秒
+./run_fstest.sh: line 45: mkfs.gfs2: command not found
+1
+gfs2
+[0B[35C[[31mFAIL[0m]
+Type is vfat
+记录了1+0 的读入
+记录了1+0 的写出
+104857600字节(105 MB)已复制，0.347017 秒，302 MB/秒
+mkfs.vfat 3.0.9 (31 Jan 2010)
+0
+vfat
+[0B[35C[[32mPASS[0m]
+testcasename			results
+[0B[35C[[32mPASS[0m]
+[0B[35C[[32mPASS[0m]
+[0B[35C[[32mPASS[0m]
+[0B[35C[[32mPASS[0m]
+[0B[35C[[32mPASS[0m]
+[0B[35C[[31mFAIL[0m]
+[0B[35C[[32mPASS[0m]
+[0B[35C[[31mFAIL[0m]
+[0B[35C[[31mFAIL[0m]
+[0B[35C[[31mFAIL[0m]
+[0B[35C[[31mFAIL[0m]
+[0B[35C[[31mFAIL[0m]
+[0B[35C[[32mPASS[0m]

@@ -1,0 +1,390 @@
+#! /bin/sh
+# version 1.0  
+# servicetest ---- test the start and stop of service
+# servicetest input1 
+# input1: The service list file path.
+
+resultPath="log/result-`date +%F`-`date +%T`"
+
+##测试 user模式的服务
+function test_user_mod()
+{
+	ser_name=` echo -e "$1" | awk -F'\t' '{print $1}' ` 
+
+	case "$ser_name" in
+	hwclock)
+		status=$( hwclock )
+		if [ "$?" = 0 ]
+		then 
+			ret=1
+		else
+			ret=0
+		fi
+		;;
+	显示主频)
+		status=$( lscpu | grep "CPU MHz" )
+		if [ "$status" ]
+		then 
+			ret=1
+		else
+			ret=0
+		fi
+		;;
+	mips64el)
+		status=$( uname -a | grep -v "mips64el" )
+		if [ "$status" ]
+		then 
+			ret=0
+		else
+			ret=1
+		fi
+		;;
+	nfs_mnt)
+		status=$( ps ax | grep "nfsd" | grep -v "grep" )
+		if [ "$status" = "" ]
+		then 
+			running=1
+			service nfs start  >> $resultPath 2>&1 
+		
+		fi
+		size=$(du -l /etc/exports |awk -F ' ' '{print $1}')
+		if [ "$size" = 0 ];then
+		echo " " 1>>/etc/exports
+		fi
+		dir="/home/nfs_mnt-`date +%F`-`date +%T`"
+		mkdir $dir	
+		sed '$a\'${dir}' *(rw,sync)\' /etc/exports 1>a.txt
+		
+		mv a.txt /etc/exports
+		exportfs -av >>resultPath 2>&1
+		
+		status=$( mount -t nfs 127.0.0.1:$dir ./tmp >> $resultPath 2>&1 )
+			if [ "$?" = 0 ] 
+			then
+			echo -e "\033[1A\033[35C[\033[32mSupport\033[0m]"
+			else
+			echo -e "\033[1A\033[35C[\033[31mNot Support\033[0m]"
+			fi
+
+		
+		if [ "$running" = 1 ]
+		then
+			service nfs stop  >> $resultPath 2>&1
+		fi
+
+		sed '$d' /etc/exports 1>b.txt 
+		mv b.txt /etc/exports
+		exportfs -av >>resultPath 2>&1
+		rm $dir -rf
+		umount ./tmp >>  $resultPath 2>&1
+		ret=99
+		;;
+	Numa)
+		ret=0
+		if [ -e "/usr/bin/numastat" ]
+		then
+		 	status=$( numastat  )
+			if [ "$?" = 0 ]
+			then 
+				ret=1
+			fi
+		fi
+		;;
+	ksm)
+		./cmd/ksm05 -I 10 >> $resultPath 2>&1 
+		ret=1
+		;;
+	fork12)
+		./cmd/fork12 >> $resultPath 2>&1
+		ret=1
+		;;
+	udf)
+		status=$( mount ./udf.iso ./tmp -o loop >> $resultPath 2>&1 )
+		if [ "$?" = 0 ]
+		then 
+			ret=1
+		else
+			ret=0
+		fi
+		`umount ./tmp >> $resultPath 2>&1`
+		;;
+        cgroup)
+                ret=0
+                if [[ -d /cgroup/cpuset && -d /cgroup/cpu && -d /cgroup/cpuacct && -d /cgroup/memory
+	&& -d /cgroup/devices && -d /cgroup/freezer && -d /cgroup/net_cls && -d /cgroup/blkio ]] 
+		then
+			ret=1
+		fi
+                ;;
+	selinux)
+                ret=1
+		status=$( sestatus | grep "enforcing" )
+		status1=$( cat /etc/selinux/config | grep -v "^#" | grep "enforcing" )
+
+                if [[ "$status" = "" && "$status1" = "" ]]
+                then
+		#selinux configed not to start
+			ret=2
+		elif [ "$status" = "" ]
+		then
+		#selinux configed to start, but failed
+			ret=0			
+		fi
+		;;
+	*)
+		echo "can't recongize user  method"
+		;;
+	esac
+	
+	return $ret	
+}
+
+function testProc()
+{
+	checkName=$1
+	startCmd=$2
+	serStatus=$( ps aux | grep $checkName | grep -v grep )
+	if [ "$serStatus" ]
+	then 
+		ret=1
+		return $ret
+	fi
+
+#进程未启动，启动进程
+	if [[ "$startCmd" = "" ]]
+	then
+		##启动进程失败
+		ret=2
+		return $ret
+	fi
+
+	`$startCmd >> $resultPath 2>&1`
+	if [[ "$?" != 0 ]]
+	then
+		##启动进程失败
+		ret=2
+		return $ret
+	fi
+
+#启动进程后再次测试
+	serStatus=$( ps aux | grep $checkName | grep -v grep )
+	if [ "$serStatus" ]
+	then 
+		ret=1
+		`$stopCmd >> $resultPath 2>&1`
+	else
+		##服务不支持
+		ret=0
+	fi
+
+	return $ret
+}
+
+function testModule()
+{
+	checkName=$1
+	startCmd=$2
+
+	serStatus=$( lsmod | grep $checkName )
+#	echo " lsmod | grep $checkName"
+#	echo "serStatus=$serStatus"
+	if [ "$serStatus" ]
+	then 
+		ret=1
+		return $ret
+	fi
+
+#模块未加载，加载模块
+	if [[ "$startCmd" = "" ]]
+	then
+		##启动进程失败
+		ret=2
+		return $ret
+	fi
+
+	`$startCmd >> $resultPath 2>&1`
+	if [[ "$?" != 0 ]]
+	then
+		##启动进程失败
+		ret=2
+		return $ret
+	fi
+
+#加载模块后再次测试
+	serStatus=$( lsmod | grep $checkName )
+	if [ "$serStatus" ]
+	then 
+		ret=1
+		`$stopCmd >> $resultPath 2>&1`
+	else
+		ret=0
+	fi
+	return $ret
+}
+
+function testPort()
+{
+	checkName=$1
+	startCmd=$2
+
+	serStatus=$( netstat -an | grep ":$checkName" )
+	if [ "$serStatus" ]
+	then 
+		ret=1
+		return $ret
+	fi
+
+#服务未启动，启动服务
+	if [[ "$startCmd" = "" ]]
+	then
+		##启动进程失败
+		ret=2
+		return $ret
+	fi
+
+	`$startCmd >> $resultPath 2>&1`
+	if [[ "$?" != 0 ]]
+	then
+		##启动进程o $serItem败
+		ret=2
+		return $ret
+	fi
+
+#启动服务后再次测试
+	serStatus=$( netstat -an | grep ":$checkName" )
+	if [ "$serStatus" ]
+	then 
+		ret=1
+		`$stopCmd >> $resultPath 2>&1`
+	else
+		ret=0
+	fi
+
+	return $ret
+}
+
+ function test_Parport()
+{
+	checkName=` echo -e "$1" | awk -F'\t' '{print $1}' ` 
+	serStatus=$( find /proc/sys/dev/ -name "$checkName" )
+	
+	if [ "$serStatus" ]
+	then
+		if [[ -d /proc/sys/dev/parport/parport0 ]]
+		then
+		echo -e "\033[1A\033[35C[\033[32mKernel Support And have parport\033[0m]"
+		else
+		echo -e "\033[1A\033[35C[\033[33mKernel Support But No parport\033[0m]"
+		fi
+	else
+		echo -e "\033[1A\033[35C[\033[31mNot Support\033[0m]"
+	fi
+	 
+}
+
+function auto_disk_format()
+{
+
+#	echo "Start format disk,Please handle with care............"
+	cd auto_disk_format
+	./fs_test.sh 2>&1 >>  ../$resultPath
+	#cat results/fsresult
+	cat results/fsresult | tee -a ../$resultPath
+	cd ..
+
+#	if [ "$?" = 0 ];then
+#		echo -e "\033[1A\033[35C[\033[32mSupport\033[0m]"
+#	else
+#		echo -e "\033[1A\033[35C[\033[31mNot Support\033[0m]"
+#	fi	
+}
+
+###判断参数
+	if [ $1 ]
+	then
+		serList=$1
+	else
+		echo "Usage: servicetest.sh config_file"
+		exit 
+	fi
+
+# chkconfig --list | grep ^[a-zA-Z] | awk '{print $1}' > $serList #慎用
+while read serItem
+do
+	#跳过以#开头的注释
+#echo -e "$serItem"
+	result=`echo "$serItem" | awk '/^[\t ]*#/' `
+	if [ "$result" ] 
+	then
+		continue
+	fi	
+
+	serName=` echo -e "$serItem" | awk -F'\t' '{print $1}' ` 
+	procName=` echo -e "$serItem" | awk -F'\t' '{print $2}' ` 
+	startCmd=` echo -e "$serItem" | awk -F'\t' '{print $3}' ` 
+	startCmd=` echo -e "$startCmd" | awk -F'"' '{print $2}' ` 
+	stopCmd=` echo -e "$serItem" | awk -F'\t' '{print $4}' ` 
+	stopCmd=` echo -e "$stopCmd" | awk -F'"' '{print $2}' ` 
+	echo "checking $serName......"
+
+#echo "1=$serName"
+#echo "2=$procName"
+#echo "3=$startCmd"
+#echo "4=$stopCmd"
+##	testService "$procName" "$serItem"
+
+#测试服务能否运行
+	param1=$procName
+	checkMethod=` echo "$param1" | awk -F: '{print $1}' ` 
+	checkName=` echo "$param1" | awk -F: '{print $2}' ` 
+
+	case "$checkMethod" in 
+	proc)
+		testProc "$checkName" "$startCmd"		
+		ret=$?
+		;;
+	module)
+		testModule "$checkName" "$startCmd"		
+		ret=$?
+		;;
+	port)
+		testPort "$checkName" "$startCmd"		
+		ret=$?
+		;;
+	user)
+		test_user_mod "$serItem"
+		ret=$?
+		;;
+	disk)
+		auto_disk_format "$serItem" 
+		ret=99
+		;;
+	parport)
+		test_Parport "$serItem"
+		ret=99
+		;;
+	*)
+		echo "can't recongize test method"
+		;;
+	esac
+	
+	case "$ret" in
+	0)
+		echo -e "\033[1A\033[35C[\033[31mNot support\033[0m]"
+		;;
+	1)
+		echo -e "\033[1A\033[35C[\033[32mSupport\033[0m]"
+		;;
+	2)
+		echo -e "\033[1A\033[35C[\033[33mService not start\033[0m]"
+		;;
+	99)
+		;;
+	*)
+		echo -e "\033[1A\033[35C[\033[33mUnknow result\033[0m]"
+		;;
+	esac
+
+done <$serList
+
+#source ./auto_disk_format/auto_disk_format.sh ./auto_disk_format/auto_disk_format.conf

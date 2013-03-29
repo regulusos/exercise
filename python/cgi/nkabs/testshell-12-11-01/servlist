@@ -1,0 +1,33 @@
+#Use tab to delimited column
+#service name	#check method(process/port/module/user)	#start command	#stop command
+hwclock	user:""
+mips64el	user:"uname -a | grep mips64el"
+Numa	user:""
+显示主频	user:"grep MHz /proc/cpuinfo"
+udf	user:
+parport	parport:
+msg_cat	module:pl2303	"modprobe pl2303"	"modprobe -r pl2303"
+soft_raid	module:md_mod	"modprobe md-mod"	"modprobe -r md-mod"
+nfs	proc:nfsd	"service nfs start"	"service nfs stop"
+#There should export /mnt in /etc/exports before
+nfs_mnt	user:""
+iptables	module:iptable_filter	"iptables -L"	"service iptables stop"
+apache	proc:httpd	"service httpd start"	"service httpd stop"
+vsftp	proc:vsftpd	"service vsftpd start"	"service vsftpd stop"
+sendmail	proc:sendmail	"service sendmail start"	"service sendmail stop"	
+named	proc:named	"/usr/sbin/named"	"/usr/bin/killall named"
+samba	proc:smb	"service smb start"	"service smb stop"		
+mysql	proc:mysqld	"service mysqld start"	"service mysqld stop"	
+ssh	proc:sshd	"service sshd start"	"service sshd stop"	
+iscsi-target	proc:tgtd	"service tgtd start"	"service tgtd stop"	
+iscsi-initiator	proc:iscsi	"service iscsid force-start"	"service iscsid stop"	
+#nis need rpcbind service first
+nis	proc:ypserv	"/usr/sbin/ypserv"	"/usr/bin/killall ypserv"
+ntp	proc:ntpd	"service ntpd start"	"service ntpd stop"
+#please modify /etc/xinetd.d/tftp first
+tftpd	port:69	"service xinetd start"	"service xinetd stop"
+selinux	user:	
+cgroup	user:
+ksm	user:	
+fork12	user:
+auto_disk_format	disk:""

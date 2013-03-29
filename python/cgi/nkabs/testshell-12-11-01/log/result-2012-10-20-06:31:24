@@ -1,0 +1,29 @@
+mount: mount point ./tmp does not exist
+umount: ./tmp: not found
+FATAL: Module md_mod not found.
+启动 NFS 服务： [确定]
+启动 NFS 守护进程：[失败]
+启动 NFS 服务： [确定]
+启动 NFS 守护进程：[失败]
+mount.nfs: unrecognized mount point ./tmp
+关闭 NFS mountd：[失败]
+关闭 NFS 守护进程：[失败]
+关闭 NFS 服务： [确定]
+umount: ./tmp: not found
+为 vsftpd 启动 vsftpd：[确定]
+关闭 vsftpd：[确定]
+sendmail: 未被识别的服务
+smb: 未被识别的服务
+tgtd: 未被识别的服务
+./testservice.sh: line 161: /usr/sbin/ypserv: 没有那个文件或目录
+正在启动 ntpd：[确定]
+关闭 ntpd：[确定]
+正在启动 xinetd：
+./testservice.sh: line 94: ./cmd/ksm05: cannot execute binary file
+fs_test
+testcasename			results
+ext2
+log_results_ok ext2 PASS
+ext3
+log_results_ok ext3 PASS
+testcasename			results

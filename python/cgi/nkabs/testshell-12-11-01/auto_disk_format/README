@@ -1,0 +1,4 @@
+使用方法：
+1.在test.cfg定义需要测试的文件系统格式；
+2.执行脚本 ./fs_test.sh
+3.生成的结果文件存放在results/fsresult文件中；

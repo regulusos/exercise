@@ -1,0 +1,27 @@
+testcasename			   results
+ext2
+[1A[35C[[32mPASS[0m]
+ext3
+[1A[35C[[32mPASS[0m]
+ext4
+[1A[35C[[32mPASS[0m]
+ext4
+[1A[35C[[32mPASS[0m]
+msdos
+[1A[35C[[32mPASS[0m]
+btrfs
+[1A[35C[[31mFAIL[0m]
+xfs
+[1A[35C[[32mPASS[0m]
+jfs
+[1A[35C[[31mFAIL[0m]
+reiserfs
+[1A[35C[[31mFAIL[0m]
+cramfs
+[1A[35C[[31mFAIL[0m]
+ntfs
+[1A[35C[[31mFAIL[0m]
+gfs2
+[1A[35C[[31mFAIL[0m]
+vfat
+[1A[35C[[32mPASS[0m]

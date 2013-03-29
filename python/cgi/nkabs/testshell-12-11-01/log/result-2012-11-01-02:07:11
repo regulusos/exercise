@@ -1,0 +1,47 @@
+FATAL: Module md_mod not found.
+启动 NFS 服务： [确定]
+关掉 NFS 配额：[确定]
+启动 NFS 守护进程：[确定]
+启动 NFS mountd：[确定]
+正在启动 RPC idmapd：[确定]
+关闭 NFS mountd：[确定]
+关闭 NFS 守护进程：[确定]
+关闭 NFS quotas：[确定]
+关闭 NFS 服务： [确定]
+启动 NFS 服务： [确定]
+关掉 NFS 配额：[确定]
+启动 NFS 守护进程：[确定]
+启动 NFS mountd：[确定]
+关闭 NFS mountd：[确定]
+关闭 NFS 守护进程：[确定]
+关闭 NFS quotas：[确定]
+关闭 NFS 服务： [确定]
+umount.nfs: 127.0.0.1:/home/nfs_mnt-2012-11-01-02:07:13: not found / mounted or server not reachable
+umount.nfs: 127.0.0.1:/home/nfs_mnt-2012-11-01-02:07:13: not found / mounted or server not reachable
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+清除防火墙规则：[确定]
+把 chains 设置为 ACCEPT 策略：filter [确定]
+正在卸载 iptables 模块：[确定]
+启动 httpd：httpd: Could not reliably determine the server's fully qualified domain name, using 10.1.40.70 for ServerName
+[确定]
+停止 httpd：[确定]
+为 vsftpd 启动 vsftpd：[确定]
+关闭 vsftpd：[确定]
+启动 sendmail：[确定]
+启动 sm-client：[确定]
+关闭 sm-client：[确定]
+关闭 sendmail：[确定]
+Starting SCSI target daemon: Starting target framework daemon
+
+Stopping SCSI target daemon: Stopping target framework daemon
+[确定]
+启动 xinetd：
+./testservice.sh: line 94: ./cmd/ksm05: cannot execute binary file
+./testservice.sh: line 98: ./cmd/fork12: cannot execute binary file
