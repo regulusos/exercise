@@ -13,6 +13,7 @@ CA_KEY     = "/home/regulus/pki/private/koji_ca_cert.key"
 CA_CRT     = "/home/regulus/pki/private/koji_ca_cert.crt"
 CA_CONFIG  = "/home/regulus/pki/openssl.cnf"
 
+
 child = pexpect.spawn('openssl req -new -x509 -days 3650 -key %s -out %s -extensions v3_ca -config %s '%(CA_KEY, CA_CRT, CA_CONFIG))
 
 child.sendline ('\n')
